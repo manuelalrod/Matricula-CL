@@ -23,6 +23,10 @@ export const routes: Routes = [
         path: 'solicitudes',
         loadComponent: () => import('./pages/administrador/solicitudes/solicitudes.component').then((m) => m.SolicitudesComponent)
     },
+    {
+        path: 'horarios',
+        loadComponent: () => import('./pages/administrador/horarios/horarios.component').then((m) => m.HorariosComponent)
+    },
     //Route Estudiante
     {
         path: 'horario-estudiante',

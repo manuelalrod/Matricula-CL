@@ -8,6 +8,7 @@ import { IniciarComponent } from './pages/estudiante/iniciar/iniciar.component';
 import { InicioComponent } from './pages/Inicio/inicio.component';
 import { IniciarPComponent } from './pages/profesor/iniciar-p/iniciar-p.component';
 import { HorarioPComponent } from './pages/profesor/horario-p/horario-p.component';
+import { HorariosComponent } from './pages/administrador/horarios/horarios.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { HorarioPComponent } from './pages/profesor/horario-p/horario-p.componen
     RouterOutlet, 
     CursoComponent, 
     ProfesorComponent, 
-    SolicitudesComponent, 
+    SolicitudesComponent,
+    HorariosComponent, 
     IniciarComponent, 
     HorarioComponent,
     InicioComponent,
