@@ -1,0 +1,63 @@
+<div class="customBack">
+    <div *ngIf="!loading" class="container">
+      <div class="row">
+        <button class="out" routerLink="/inicio">Salir</button>
+        <button class="btn btn-position" (click)="openAgregarPopup()">+</button>
+        <div class="custom-col">
+          <table class="table">
+            <thead>
+              <tr class="row">
+                <th class="co">Nombre</th>
+                <th class="co">Apellido</th>
+                <th class="co">Cédula</th>
+                <th class="co">Email</th>
+                <th class="co">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let profesor of profesores | async" class="row">
+                <td class="col"><i>{{ profesor.nombre }}</i></td>
+                <td class="col"><i>{{ profesor.apellido }}</i></td>
+                <td class="col"><i>{{ profesor.dni }}</i></td>
+                <td class="col"><i>{{ profesor.email }}</i></td>
+                <td class="col">
+                  <button class="btn-actualizar" (click)="openEditarPopup(profesor)">Editar</button>
+                  <button class="btn-actualizar" (click)="borrarProfesor(profesor.id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="popup" *ngIf="isPopupOpen">
+    <div class="popup-content">
+      <span class="close" (click)="closePopup()">&times;</span>
+      <h2>Agregar/Editar Profesor</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input id="nombre" type="text" [(ngModel)]="profesor.nombre" name="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido:</label>
+          <input id="apellido" type="text" [(ngModel)]="profesor.apellido" name="apellido" required />
+        </div>
+        <div class="form-group">
+          <label for="dni">Cédula:</label>
+          <input id="dni" type="text" [(ngModel)]="profesor.dni" name="dni" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input id="email" type="email" [(ngModel)]="profesor.email" name="email" required />
+        </div>
+  
+        <div class="button-container">
+          <button type="submit" class="buttonS">{{ editMode ? 'Actualizar' : 'Agregar' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
