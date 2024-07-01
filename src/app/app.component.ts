@@ -9,12 +9,17 @@ import { InicioComponent } from './pages/Inicio/inicio.component';
 import { IniciarPComponent } from './pages/profesor/iniciar-p/iniciar-p.component';
 import { HorarioPComponent } from './pages/profesor/horario-p/horario-p.component';
 import { HorariosComponent } from './pages/administrador/horarios/horarios.component';
+import { ProfesorService } from './shared/profesor/profesor.service';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet, 
+    FormsModule,
+    HttpClientModule,
     CursoComponent, 
     ProfesorComponent, 
     SolicitudesComponent,
@@ -26,7 +31,8 @@ import { HorariosComponent } from './pages/administrador/horarios/horarios.compo
     HorarioPComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers: [ProfesorService]
 })
 export class AppComponent {
   title = 'matricula';
