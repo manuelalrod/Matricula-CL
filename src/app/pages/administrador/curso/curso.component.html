@@ -1,4 +1,24 @@
-<div class="customBack">
+<header class="header">
+
+  <section class="flex">
+
+      <a href="#Home" class="logo">Centro de Lenguas</a>
+
+      <nav class="navbar">
+        <ul>
+          <li><a routerLink="/profesores" class="active">Profesores</a></li>
+          <li><a routerLink="/solicitudes" class="active">Solicitudes</a></li>
+          <li><a routerLink="/curso" >Cursos</a></li>
+          <li><a routerLink="/horarios" class="active">Horarios</a></li>
+        </ul>    
+      </nav>
+
+  </section>
+</header>
+
+<section>
+
+  <div class="customBack">
     <div *ngIf="!loading" class="container">
       <div class="row">
         <button class="out" routerLink="/inicio">Salir</button>
@@ -57,3 +77,5 @@
       </form>
     </div>
   </div>
+
+</section>

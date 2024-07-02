@@ -6,7 +6,6 @@ import { ProfesorModel } from '../../../shared/profesor/profesor.model';
 import { CursoService } from '../../../shared/curso/curso.service';
 import { ProfesorService } from '../../../shared/profesor/profesor.service';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-curso',
