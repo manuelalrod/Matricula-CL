@@ -15,3 +15,76 @@
   
     </section>
   </header>
+
+  <section>
+    <div class="customBack">
+      <div *ngIf="!loading" class="container">
+        <div class="row">
+          <button class="out" routerLink="/inicio">Salir</button>
+          <button class="btn btn-position" (click)="openAgregarPopup()">+</button>
+          <div class="custom-col">
+            <table class="table">
+                <thead>
+                  <tr class="row">
+                    <th class="co">Hora</th>
+                    <th class="co">Lunes</th>
+                    <th class="co">Martes</th>
+                    <th class="co">Miércoles</th>
+                    <th class="co">Jueves</th>
+                    <th class="co">Viernes</th>
+                    <th class="co">Sábado</th>
+                    <th class="co">Domingo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let hora of horas">
+                    <td class="col">{{ hora }}</td>
+                    <td class="col" *ngFor="let dia of dias">
+                      <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)">
+                        {{ obtenerNombreCurso(item.curso_id) }} 
+                        <button (click)="openEditarPopup(item)" class="btn btn-warning btn-sm">Editar</button>
+                        <button (click)="eliminar(item.id)" class="btn btn-danger btn-sm">Eliminar</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="popup" *ngIf="isPopupOpen">
+      <div class="popup-content">
+        <span class="close" (click)="closePopup()">&times;</span>
+        <h2>{{ editMode ? 'Editar Hora' : 'Agregar Hora' }}</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="curso">Curso:</label>
+              <select id="curso" class="form-control" [(ngModel)]="formData.curso_id" name="curso" required>
+                <option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nombre }}</option>
+              </select>
+            </div>
+          
+            <div class="form-group">
+              <label for="dia">Día de la semana:</label>
+              <select id="dia" class="form-control" [(ngModel)]="formData.dia" name="dia" required>
+                <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
+              </select>
+            </div>
+          
+            <div class="form-group">
+              <label for="hora">Hora:</label>
+              <select id="hora" class="form-control" [(ngModel)]="selectedHora" name="hora" required>
+                <option *ngFor="let hora of horas" [value]="hora">{{ hora }}</option>
+              </select>
+            </div>
+          
+            <div class="button-container">
+              <button type="submit" class="buttonS">{{ editMode ? 'Actualizar' : 'Agregar' }}</button>
+            </div>
+          </form>         
+      </div>
+    </div>
+    </section>
+      

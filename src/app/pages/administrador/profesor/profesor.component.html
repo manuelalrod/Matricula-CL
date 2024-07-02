@@ -54,7 +54,7 @@
 <div class="popup" *ngIf="isPopupOpen">
   <div class="popup-content">
     <span class="close" (click)="closePopup()">&times;</span>
-    <h2>Agregar/Editar Profesor</h2>
+    <h2>{{ editMode ? 'Editar Profesor' : 'Agregar Profesor' }}</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="nombre">Nombre:</label>
