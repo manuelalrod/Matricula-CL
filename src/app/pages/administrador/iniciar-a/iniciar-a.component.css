@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root{
+  --blue: #C9D7DD;
+  --white: #fff;
+  --light-white: #F1EEDC;
+  --black: #F6F4EB;
+  --light-bg: #164863;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  transition: .2s linear;
+  text-transform: capitalize;
+  font-family: 'Rubik', sans-serif;
+}
+
+*::selection{
+  background-color: var(--white);
+  color: var(--black);
+}
+
+html{
+  font-size: 30px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 8rem;
+}
+
+::-webkit-scrollbar{
+  height: .5rem;
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: var(--blue);
+  border-radius: 5rem;
+}
+
+body{
+  background-color: var(--black);
+}
+
+section{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--light-bg);
+  }
+  
+  .header .flex{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header .flex .logo {
+    font-size: 20px;
+    color: var(--white);
+  }
+  
+  .header .flex .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    color: var(--light-white);
+    font-size: 20px; 
+  }
+  
+  .header .flex .navbar ul li {
+    margin-left: 2rem;
+  }
+  
+  .header .flex .navbar ul li a {
+    color: var(--light-white);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .header .flex .navbar ul li a:hover,
+  .header .flex .navbar ul li a.active {
+    color: var(--blue);
+  }
+  
+  section {
+    padding: 25px;
+  }
+
+.container{
+    width: 100%;
+    display: flex;
+    max-width: 1100px;
+}
+
+.card{
+    width: 500px;
+    height: 360px;
+    margin: 20px;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    transition: all 400ms ease;
+    margin-left: 350px;
+    margin-top: 100px;
+}
+
+.card:hover{
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card img{
+    width: 150px;
+    height: 150px;
+    margin-left: 170px;
+    margin-bottom: 5px;
+}
+
+.card .contenido{
+    padding: 15px;
+    text-align: center;
+}
+
+.card button {
+    margin-top: 40px;
+    background: #fff;
+    font-size: 14px;
+    padding: 13px 70px;
+    border-radius: 26px;
+    border: 1px solid #D4D3E8;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block; /* Cambiado de flex a inline-block */
+    text-align: center;
+    width: auto; /* Cambiado de 100% a auto */
+    color: #164863;
+    box-shadow: 0px 2px 2px #76885B;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones, ajustable */
+    justify-content: center; /* Opcional: centra los botones en el contenedor */
+}
+
+
+.out {
+    position: absolute;
+    top: 78px;
+    right: 1170px;
+    margin-top: 50px;
+    padding: 10px 20px;
+    background-color: #164863; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; 
+    }
+    
+    .out:hover{
+      background-color: #088395;
+    }
+
+    .form-group{
+        padding-bottom: 15px;
+        display: flex;
+        flex-direction: row;
+        gap: 15px; 
+        color: #164863;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column; 
+        gap: 10px; 
+    }
+
+    .buttonS{
+        margin-top: 30px;
+        background: #DBE7C9;
+        font-size: 14px;
+        padding: 10px 150px;
+        border-radius: 26px;
+        border: 1px solid #D4D3E8;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: flex;
+        text-align: center;
+        width: 100%;
+        color: #164863;
+        box-shadow: 0px 2px 2px #76885B;
+        cursor: pointer;
+    } 
