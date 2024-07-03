@@ -40,11 +40,15 @@
                   <tr *ngFor="let hora of horas">
                     <td class="col">{{ hora }}</td>
                     <td class="col" *ngFor="let dia of dias">
-                      <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)">
-                        {{ obtenerNombreCurso(item.curso_id) }} 
-                        <button (click)="openEditarPopup(item)" class="btn btn-warning btn-sm">Editar</button>
-                        <button (click)="eliminar(item.id)" class="btn btn-danger btn-sm">Eliminar</button>
-                      </div>
+                      <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)" class="curso-container">
+                        <div class="nombre-y-botones">
+                            <span class="curso-nombre">{{ obtenerNombreCurso(item.curso_id) }}</span>
+                            <div class="button-container">
+                                <button (click)="openEditarPopup(item)" class="btn-actualizar">Editar</button>
+                                <button (click)="eliminar(item.id)" class="btn-borrar">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>                    
                     </td>
                   </tr>
                 </tbody>

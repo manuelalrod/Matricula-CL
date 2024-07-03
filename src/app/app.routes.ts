@@ -12,6 +12,10 @@ export const routes: Routes = [
   },
   //Route Administrador
   {
+    path: 'iniciar',
+    loadComponent: () => import('./pages/administrador/iniciar-a/iniciar-a.component').then((m) => m.IniciarAComponent)
+  },
+  {
     path: 'curso',
     loadComponent: () => import('./pages/administrador/curso/curso.component').then((m) => m.CursoComponent)
   },
