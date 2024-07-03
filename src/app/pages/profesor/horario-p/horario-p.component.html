@@ -1,15 +1,19 @@
-<div *ngIf="profesor">
-    <h2>Detalle del Profesor</h2>
-    <button class="out" routerLink="/iniciar-profesor">Salir</button>
-    <p><strong>Nombre:</strong> {{ profesor.nombre }}</p>
-    <p><strong>Apellido:</strong> {{ profesor.apellido }}</p>
-    <p><strong>Email:</strong> {{ profesor.email }}</p>
-    <p><strong>Cédula:</strong> {{ profesor.dni }}</p>
-  </div>
+<header class="header">
+  <section class="flex">
+    <a href="#Home" class="logo">Centro de Lenguas</a>
+  </section>
+</header>
 
-  <section>
-    <button (click)="imprimirHorario()">Imprimir Horario en PDF</button>
-    <div id="horario-pdf">
+<section>
+  <div id="horario-pdf">
+    <div class="info" *ngIf="profesor">
+      <h2>Horario</h2>
+      <div class="profesor-info">
+        <p><strong>Profesor:</strong> {{ profesor.nombre }} {{ profesor.apellido }}</p>
+        <p><strong>Email:</strong> {{ profesor.email }}</p>
+        <p><strong>Cédula:</strong> {{ profesor.dni }}</p>
+      </div>
+    </div>
     <div class="customBack">
       <div *ngIf="!loading" class="container">
         <div class="row">
@@ -46,7 +50,7 @@
       </div>
     </div>
   </div>
-  </section>
-  
-  
-  
+  <div class="outP">
+    <button class="outs" (click)="imprimirHorario()">Descargar PDF</button>
+  </div>
+</section>
