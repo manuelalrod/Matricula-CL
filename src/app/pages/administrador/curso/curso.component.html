@@ -1,0 +1,81 @@
+<header class="header">
+
+  <section class="flex">
+
+      <a href="#Home" class="logo">Centro de Lenguas</a>
+
+      <nav class="navbar">
+        <ul>
+          <li><a routerLink="/profesores" class="active">Profesores</a></li>
+          <li><a routerLink="/solicitudes" class="active">Solicitudes</a></li>
+          <li><a routerLink="/curso" >Cursos</a></li>
+          <li><a routerLink="/horarios" class="active">Horarios</a></li>
+        </ul>    
+      </nav>
+
+  </section>
+</header>
+
+<section>
+
+  <div class="customBack">
+    <div *ngIf="!loading" class="container">
+      <div class="row">
+        <button class="out" routerLink="/inicio">Salir</button>
+        <button class="btn btn-position" (click)="openAgregarPopup()">+</button>
+        <div class="custom-col">
+          <table class="table">
+            <thead>
+              <tr class="row">
+                <th class="co">Nombre del Curso</th>
+                <th class="co">Duración</th>
+                <th class="co">Profesor</th>
+                <th class="co">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of cursos " class="row">
+                <td class="col"><i>{{ curso.nombre }}</i></td>
+                <td class="col"><i>{{ curso.duracion }}</i></td>
+                <td class="col"><i>{{ obtenerNombreProfesor(curso.id_profe) }}</i></td>
+                <td class="col">
+                  <button class="btn-actualizar" (click)="openEditarPopup(curso)">Editar</button>
+                  <button class="btn-actualizar" (click)="borrarCurso(curso.id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+  
+  <div class="popup" *ngIf="isPopupOpen">
+    <div class="popup-content">
+      <span class="close" (click)="closePopup()">&times;</span>
+      <h2>{{ editMode ? 'Editar Curso' : 'Agregar Curso' }}</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombre">Nombre del curso:</label>
+          <input id="nombre" type="text" [(ngModel)]="curso.nombre" name="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="duracion">Duración:</label>
+          <input id="duracion" type="text" [(ngModel)]="curso.duracion" name="duracion" required />
+        </div>
+        <div class="form-group">
+          <label for="idProfesor">Profesor:</label>
+          <select id="idProfesor" [(ngModel)]="curso.id_profe" name="idProfesor" required>
+            <option *ngFor="let profesor of profesores" [value]="profesor.id">
+                {{ profesor.nombre }} {{ profesor.apellido }}
+            </option>
+          </select>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="buttonS">{{ editMode ? 'Actualizar' : 'Agregar' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
