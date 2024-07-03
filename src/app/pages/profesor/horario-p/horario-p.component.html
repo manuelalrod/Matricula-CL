@@ -6,5 +6,47 @@
     <p><strong>Email:</strong> {{ profesor.email }}</p>
     <p><strong>Cédula:</strong> {{ profesor.dni }}</p>
   </div>
+
+  <section>
+    <button (click)="imprimirHorario()">Imprimir Horario en PDF</button>
+    <div id="horario-pdf">
+    <div class="customBack">
+      <div *ngIf="!loading" class="container">
+        <div class="row">
+          <button class="out" routerLink="/inicio">Salir</button>
+          <div class="custom-col">
+            <table class="table">
+              <thead>
+                <tr class="row">
+                  <th class="co">Hora</th>
+                  <th class="co">Lunes</th>
+                  <th class="co">Martes</th>
+                  <th class="co">Miércoles</th>
+                  <th class="co">Jueves</th>
+                  <th class="co">Viernes</th>
+                  <th class="co">Sábado</th>
+                  <th class="co">Domingo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let hora of horas">
+                  <td class="col">{{ hora }}</td>
+                  <td class="col" *ngFor="let dia of dias">
+                    <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)" class="curso-container">
+                      <div class="nombre-y-botones">
+                        <span class="curso-nombre">{{ obtenerNombreCurso(item.curso_id) }}</span>
+                      </div>
+                    </div>                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  
   
   
