@@ -128,6 +128,8 @@ section {
   padding-left: 10px;
   border: 2px solid #F1EEDC;
   background: #fff;
+  min-width: 150px;
+  min-height: 150px;
 }
 
 table {
@@ -149,6 +151,16 @@ table {
   color: #164863;
 }
 
+.curso-container {
+  display: flex;
+  text-align: center;
+}
+
+.curso-nombre {
+  display: block;         
+  margin-bottom: 5px;    
+}
+
 .customBack {
   position: relative;
   height: 100vh; 
@@ -167,6 +179,7 @@ table {
   font-size: xx-large;
   height: 60px;
   width: 60px;
+  right: -130px; 
 }
 
 .btn:hover{
@@ -176,28 +189,29 @@ table {
 .btn-position {
   position: absolute;
   top: 570px; 
-  right: 50px; 
+  
 }
 
 .button-container {
-  display: flex;
-  flex-direction: column; 
-  gap: 10px; 
+  display: flex;          
+  justify-content: center; 
+  gap: 10px;             
+  flex-direction: row; 
 }
 
 .btn-actualizar, .btn-borrar {
-  padding: 0.7em 1em; 
-  font-size: 13px; 
-  letter-spacing: 1.5px; 
-  font-weight: 500;
-  color: #000;
-  background-color: #fff;
-  border: none;
-  border-radius: 20px; 
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
+padding: 0.7em 1em; 
+font-size: 10px; 
+letter-spacing: 1.5px; 
+font-weight: 500;
+color: #000;
+background-color: #fff;
+border: none;
+border-radius: 20px; 
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+transition: all 0.3s ease 0s;
+cursor: pointer;
+outline: none;
 }
 
 .btn-actualizar:hover, .btn-borrar:hover {
@@ -250,10 +264,10 @@ text-align: center;
 }
 
 .out {
-position: absolute;
-top: 10px;
-right: 1170px;
-margin-top: 50px;
+position: fixed;
+bottom: 655px;
+right: 1390px;
+z-index: 1001;
 padding: 10px 20px;
 background-color: #164863; 
 color: white;
