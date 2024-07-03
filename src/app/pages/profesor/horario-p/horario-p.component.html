@@ -1,1 +1,10 @@
-<p>horario-p works!</p>
+<div *ngIf="profesor">
+    <h2>Detalle del Profesor</h2>
+    <button class="out" routerLink="/iniciar-profesor">Salir</button>
+    <p><strong>Nombre:</strong> {{ profesor.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ profesor.apellido }}</p>
+    <p><strong>Email:</strong> {{ profesor.email }}</p>
+    <p><strong>Cédula:</strong> {{ profesor.dni }}</p>
+  </div>
+  
+  

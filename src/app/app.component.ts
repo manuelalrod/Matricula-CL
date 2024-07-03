@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CursoService } from './shared/curso/curso.service';
 import { HorarioService } from './shared/horario/horario.service';
+import { EstudianteService } from './shared/estudiantes/estudiantes.service';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,7 @@ import { HorarioService } from './shared/horario/horario.service';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [ProfesorService, CursoService, HorarioService]
+  providers: [ProfesorService, CursoService, HorarioService,EstudianteService]
 })
 export class AppComponent {
   title = 'matricula';
