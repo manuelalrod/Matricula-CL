@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CursoService } from './shared/curso/curso.service';
 import { HorarioService } from './shared/horario/horario.service';
+import { IniciarAComponent } from './pages/administrador/iniciar-a/iniciar-a.component';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,8 @@ import { HorarioService } from './shared/horario/horario.service';
     HorarioComponent,
     InicioComponent,
     IniciarPComponent,
-    HorarioPComponent
+    HorarioPComponent,
+    IniciarAComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
