@@ -16,6 +16,10 @@ export class HorarioService {
     return this.http.get<HorarioModel[]>(`${this.BASE_URL}/horario`);
   }
 
+  obtenerHorarioPorProfesor(profesorId: string) {
+    return this.http.get<HorarioModel[]>(`${this.BASE_URL}/horarios-profesor/${profesorId}`)
+  }
+
   agregarHorario(horario: HorarioModel)  {
     return this.http.post<string>(`${this.BASE_URL}/horario/agregar`, horario);
   }
