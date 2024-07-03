@@ -250,18 +250,18 @@ text-align: center;
 }
 
 .out {
-position: absolute;
-top: 10px;
-right: 1170px;
-margin-top: 50px;
-padding: 10px 20px;
-background-color: #164863; 
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-text-decoration: none; 
-}
+  position: fixed;
+  bottom: 655px;
+  right: 1390px;
+  z-index: 1001;
+  padding: 10px 20px;
+  background-color: #164863; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; 
+  }
 
 .out:hover{
   background-color: #088395;
