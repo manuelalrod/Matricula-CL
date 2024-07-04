@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HorarioModel } from './horario.model'; 
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -18,6 +19,14 @@ export class HorarioService {
 
   obtenerHorarioPorProfesor(profesorId: string) {
     return this.http.get<HorarioModel[]>(`${this.BASE_URL}/horarios-profesor/${profesorId}`)
+  }
+
+  obtenerHorariosCurso(cursoId: string): Observable<HorarioModel[]> {
+    return this.http.get<HorarioModel[]>(`${this.BASE_URL}/horarios-curso/${cursoId}`);
+  }
+
+  obtenerHorariosAprobados(estudianteId: string): Observable<HorarioModel[]> {
+    return this.http.get<HorarioModel[]>(`${this.BASE_URL}/horarios-aprobados/${estudianteId}`);
   }
 
   agregarHorario(horario: HorarioModel)  {

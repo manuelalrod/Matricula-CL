@@ -1,17 +1,41 @@
 <header class="header">
+  <section class="flex">
+    <a href="#Home" class="logo">Centro de Lenguas</a>
+    <nav class="navbar">
+      <ul>
+        <li><a routerLink="/profesores" class="active">Profesores</a></li>
+        <li><a routerLink="/solicitudes">Solicitudes</a></li>
+        <li><a routerLink="/curso" class="active">Cursos</a></li>
+        <li><a routerLink="/horarios" class="active">Horarios</a></li>
+      </ul>    
+    </nav>
+  </section>
+</header>
 
-    <section class="flex">
-  
-        <a href="#Home" class="logo">Centro de Lenguas</a>
-  
-        <nav class="navbar">
-          <ul>
-            <li><a routerLink="/profesores" class="active">Profesores</a></li>
-            <li><a routerLink="/solicitudes">Solicitudes</a></li>
-            <li><a routerLink="/curso" class="active">Cursos</a></li>
-            <li><a routerLink="/horarios" class="active">Horarios</a></li>
-          </ul>    
-        </nav>
-  
-    </section>
-  </header>
+<section>
+  <div class="container">
+    <h2>Solicitudes de Matrícula</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="co">Curso</th>
+          <th class="co">Estudiante</th>
+          <th class="co">Estado</th>
+          <th class="co">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let solicitud of solicitudes">
+          <td class="col">{{ solicitud.curso_id }}</td>
+          <td class="col">{{ solicitud.estudiante_id }}</td>
+          <td class="col">{{ solicitud.estado }}</td>
+          <td class="col">
+            <button (click)="aprobarSolicitud(solicitud)" [disabled]="solicitud.estado !== 'Pendiente'">Aprobar</button>
+            <button (click)="rechazarSolicitud(solicitud)" [disabled]="solicitud.estado !== 'Pendiente'">Rechazar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+

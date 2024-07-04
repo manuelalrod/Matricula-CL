@@ -5,18 +5,54 @@
 </header>
 
 <section class="datos">
-<div *ngIf="estudiante">
+  <!-- Detalle del estudiante -->
+  <div *ngIf="estudiante">
     <h2>Detalle del Estudiante</h2>
     <button class="out" routerLink="/iniciar-estudiante">Salir</button>
     <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
     <p><strong>Email:</strong> {{ estudiante.email }}</p>
     <p><strong>Cedula:</strong> {{ estudiante.dni }}</p>
   </div>
+
+  <!-- Botón para ver horarios -->
   <div class="button-container">
     <button (click)="openAgregarPopup()">Ver Horario</button>
-</div>
+  </div>
+
+  <!-- Mostrar horario sin cursos si no hay cursos matriculados -->
+  <div *ngIf="!cursosAprobados.length">
+    <h2>Horario</h2>
+    <table class="table">
+      <thead>
+        <tr class="row">
+          <th class="co">Hora</th>
+          <th class="co">Lunes</th>
+          <th class="co">Martes</th>
+          <th class="co">Miércoles</th>
+          <th class="co">Jueves</th>
+          <th class="co">Viernes</th>
+          <th class="co">Sábado</th>
+          <th class="co">Domingo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hora of horas">
+          <td class="col">{{ hora }}</td>
+          <td class="col" *ngFor="let dia of dias">
+            <!-- Mostrar solo las materias matriculadas aceptadas -->
+            <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)" class="curso-container">
+              <div class="nombre-y-botones">
+                <span class="curso-nombre">{{ obtenerNombreCurso(item.curso_id) }}</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
+<!-- Popup para ver horarios del curso seleccionado -->
 <div class="popup" *ngIf="isPopupOpen">
   <div class="popup-content">
     <span class="close" (click)="closePopup()">&times;</span>
@@ -28,7 +64,6 @@
           </select>
         </div>
       </section>
-    
     <section>
       <h1>Horarios</h1>
       <div class="info">
@@ -74,3 +109,5 @@
     </section>
   </div>
 </div>
+
+
