@@ -113,7 +113,7 @@ section{
 
 .card{
     width: 500px;
-    height: 360px;
+    height: 460px;
     margin: 20px;
     border-radius: 7px;
     overflow: hidden;
@@ -142,7 +142,7 @@ section{
 }
 
 .card button {
-    margin-top: 40px;
+    margin-top: 20px;
     background: #fff;
     font-size: 14px;
     padding: 13px 70px;
@@ -150,9 +150,9 @@ section{
     border: 1px solid #D4D3E8;
     text-transform: uppercase;
     font-weight: 700;
-    display: inline-block; /* Cambiado de flex a inline-block */
+    display: inline-block; 
     text-align: center;
-    width: auto; /* Cambiado de 100% a auto */
+    width: auto; 
     color: #164863;
     box-shadow: 0px 2px 2px #76885B;
     cursor: pointer;

@@ -264,18 +264,18 @@ text-align: center;
 }
 
 .out {
-position: fixed;
-bottom: 655px;
-right: 1390px;
-z-index: 1001;
-padding: 10px 20px;
-background-color: #164863; 
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-text-decoration: none; 
-}
+  position: fixed;
+  bottom: 735px;
+  right: 1460px;
+  z-index: 1001;
+  padding: 10px 20px;
+  background-color: #164863; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; 
+  }
 
 .out:hover{
   background-color: #088395;

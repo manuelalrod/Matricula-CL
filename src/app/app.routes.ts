@@ -42,7 +42,7 @@ export const routes: Routes = [
   },
   {
     path: 'horarios-cursos',
-    loadComponent: () => import('./pages/estudiante/horarios/horarios-e/horarios-e.component').then((m) => m.HorariosEComponent)
+    loadComponent: () => import('./pages/estudiante/horarios-e/horarios-e.component').then((m) => m.HorariosEComponent)
   },
   //Route Profesor
   {

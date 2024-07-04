@@ -1,3 +1,18 @@
+<header class="header">
+  <section class="flex">
+    <a href="#Home" class="logo">Centro de Lenguas</a>
+
+    <nav class="navbar">
+      <ul>
+        <li><a routerLink="/horario" class="active">Horario</a></li>
+        <li><a routerLink="/horarios-cursos" class="active">Ver Horarios</a></li>
+      </ul>    
+    </nav>
+
+  </section>
+</header>
+
+<section class="datos">
 <div *ngIf="estudiante">
     <h2>Detalle del Estudiante</h2>
     <button class="out" routerLink="/iniciar-estudiante">Salir</button>
@@ -8,6 +23,7 @@
     <p><strong>Edad:</strong> {{ estudiante.edad }}</p>
     <p><strong>Prueba:</strong> {{ estudiante.prueba }}</p>
   </div>
+</section>
   
   
   
