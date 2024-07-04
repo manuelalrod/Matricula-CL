@@ -41,8 +41,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/estudiante/iniciar/iniciar.component').then((m) => m.IniciarComponent)
   },
   {
-    path: 'solicitar',
-    loadComponent: () => import('./pages/estudiante/solicitar/solicitar.component').then((m) => m.SolicitarComponent)
+    path: 'horarios-cursos',
+    loadComponent: () => import('./pages/estudiante/horarios/horarios-e/horarios-e.component').then((m) => m.HorariosEComponent)
   },
   //Route Profesor
   {
