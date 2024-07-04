@@ -139,8 +139,6 @@ section {
   text-align: center;
 }
 
-
-
 .close {
   position: absolute;
   top: 10px;
@@ -283,32 +281,71 @@ transform: translateY(-200px) translateX(75px);
 }
 
 .info{
-  padding-top: 10px;
+  padding-top: 90px;
   text-align: center;
 }
 
 .info h2{
   text-align: center;
+  padding-bottom: 40px;
   font-size: 40px;
+}
+
+.profesor-info {
+  display: flex;
+  justify-content: center;
+  gap: 100px; 
+}
+
+.profesor-info p {
+  font-size: 19px;
+}
+
+.button-container{
+  display: flex;
+  padding-top: 50px;
+  padding-left: 100px;
+}
+
+.btn{
+  background-color: #164863;
+  color: #fff;
+  padding: 10px;
+  border-radius: 9px;
+}
+
+.btn:hover{
+  background-color: #088395;
 }
 
 h1{
   text-align: center;
 }
 
-h2{
+.infos{
+  padding-top: 20px;
   text-align: center;
-  font-size: 16px;
 }
 
-.info-H {
+.infos h2{
+  text-align: center;
+  padding-bottom: 5px;
+  font-size: 40px;
+}
+
+.infos-H{
   display: flex;
+  gap: 20px;
   justify-content: center;
-  gap: 100px; 
 }
 
-.info-H p {
-  margin: 0;
+.infos-H p {
+  margin: 10px;
   font-size: 19px;
-  color: #000;
 }
+
+.select{
+  font-size: 15px;
+  padding-bottom: 30px;
+}
+

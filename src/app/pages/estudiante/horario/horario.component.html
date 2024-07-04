@@ -4,16 +4,18 @@
   </section>
 </header>
 
-<section class="datos">
-<div *ngIf="estudiante">
-    <h2>Detalle del Estudiante</h2>
+<section>
+<div class="info" *ngIf="estudiante">
+    <h2>Horario</h2>
     <button class="out" routerLink="/iniciar-estudiante">Salir</button>
+    <div class="profesor-info">
     <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
     <p><strong>Email:</strong> {{ estudiante.email }}</p>
     <p><strong>Cedula:</strong> {{ estudiante.dni }}</p>
   </div>
+  </div>
   <div class="button-container">
-    <button (click)="openAgregarPopup()">Ver Horario</button>
+    <button class="btn" (click)="openAgregarPopup()">Ver Horarios</button>
 </div>
 </section>
 
@@ -30,9 +32,9 @@
       </section>
     
     <section>
-      <h1>Horarios</h1>
-      <div class="info">
-        <div class="info-H" *ngIf="cursoSeleccionado">
+      <div class="infos">
+        <h1>Horarios</h1>
+        <div class="infos-H" *ngIf="cursoSeleccionado">
           <p>Materia: {{ cursoSeleccionado.nombre }}</p>
           <p>Profesor: {{ obtenerNombreProfesor(cursoSeleccionado.id_profe) }}</p>
         </div>
