@@ -16,6 +16,7 @@ import { CursoService } from './shared/curso/curso.service';
 import { HorarioService } from './shared/horario/horario.service';
 import { EstudianteService } from './shared/estudiantes/estudiantes.service';
 import { IniciarAComponent } from './pages/administrador/iniciar-a/iniciar-a.component';
+import { HorariosEComponent } from './pages/estudiante/horarios/horarios-e/horarios-e.component';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,9 @@ import { IniciarAComponent } from './pages/administrador/iniciar-a/iniciar-a.com
     InicioComponent,
     IniciarPComponent,
     HorarioPComponent,
-    IniciarAComponent
+    IniciarAComponent,
+    HorariosEComponent
+
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
