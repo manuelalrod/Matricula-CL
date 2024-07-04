@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EstudianteModel } from './estudiante.model'; // Ajusta la ruta según tu estructura de proyecto
+import { EstudianteModel } from './estudiante.model'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstudianteService {
-  private baseUrl = 'http://localhost:3000'; // Cambia la URL según sea necesario
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
@@ -31,5 +31,3 @@ export class EstudianteService {
     return this.http.delete<any>(`${this.baseUrl}/estudiante/borrar/${id}`);
   }
 }
-
-

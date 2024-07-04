@@ -108,3 +108,207 @@ section {
 .datos{
     padding-top: 90px;
 }
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1100px; /* Aumentar la anchura máxima */
+  max-height: 90vh; /* Ajustar la altura máxima */
+  width: 100%;
+  
+  position: relative;
+}
+
+.popup-content h2 {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+section {
+  padding: 15px;
+}
+
+.container {
+  margin-top: 1px;
+}
+
+.co {
+  text-align: center;
+  align-items: center;
+  font-size: 18px; 
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #164863;
+  border: 1px solid #F1EEDC;
+  color: white;
+}
+
+.col {
+  text-align: center;
+  font-size: 14px; 
+  padding-right: 8px;
+  padding-left: 8px;
+  border: 1px solid #F1EEDC; 
+  background: #fff;
+  min-width: 125px; 
+  min-height: 160px; 
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%; 
+  max-width: 200px; 
+  height: auto; 
+  overflow: hidden; 
+  border-radius: 20px; 
+  margin-top: 10px;
+  text-align: center;
+}
+
+.curso-container {
+display: flex;
+justify-content: center; 
+align-items: center; 
+height: 100%;
+}
+
+.curso-nombre {
+display: block;
+text-align: center; 
+}
+
+
+.customBack {
+  position: relative;
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start; 
+}
+
+@page {
+  margin: 10mm; 
+}
+
+@media print {
+  @page {
+      size: landscape;
+  }
+}
+
+table tr {
+  line-height: 1; 
+}
+
+
+.out {
+position: fixed;
+bottom: 735px;
+right: 1460px;
+z-index: 1001;
+padding: 10px 20px;
+background-color: #164863; 
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-decoration: none; 
+}
+
+.out:hover{
+  background-color: #088395;
+}
+
+.profesor-info {
+  display: flex;
+  justify-content: center;
+  gap: 100px; 
+}
+
+.profesor-info p {
+  margin: 0;
+  font-size: 19px;
+}
+
+.outs {
+cursor: pointer;
+background-color: #164863; 
+color: white;
+border: none;
+border-radius: 5px;
+padding: 10px;
+transform: translateY(-200px) translateX(75px);
+}
+
+.curso{
+  align-items: center;
+  text-align: center;
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.select{
+  font-size: 14px;
+  flex-direction: row;
+  bottom: 90px;
+}
+
+.info{
+  padding-top: 10px;
+  text-align: center;
+}
+
+.info h2{
+  text-align: center;
+  font-size: 40px;
+}
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+  font-size: 16px;
+}
+
+.info-H {
+  display: flex;
+  justify-content: center;
+  gap: 100px; 
+}
+
+.info-H p {
+  margin: 0;
+  font-size: 19px;
+  color: #000;
+}
