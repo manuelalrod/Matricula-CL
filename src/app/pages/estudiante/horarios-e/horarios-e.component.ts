@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { HorarioModel } from '../../../../shared/horario/horario.model';
-import { HorarioService } from '../../../../shared/horario/horario.service';
+import { HorarioModel } from '../../../shared/horario/horario.model';
+import { HorarioService } from '../../../shared/horario/horario.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { CursoModel } from '../../../../shared/curso/curso.model';
-import { CursoService } from '../../../../shared/curso/curso.service';
-import { ProfesorService } from '../../../../shared/profesor/profesor.service';
-import { ProfesorModel } from '../../../../shared/profesor/profesor.model';
+import { CursoModel } from '../../../shared/curso/curso.model';
+import { CursoService } from '../../../shared/curso/curso.service';
+import { ProfesorService } from '../../../shared/profesor/profesor.service';
+import { ProfesorModel } from '../../../shared/profesor/profesor.model';
 
 @Component({
   selector: 'app-horarios-e',

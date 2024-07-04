@@ -106,7 +106,7 @@ section {
   }
   
   .container {
-    margin-top: 5px;
+    margin-top: 1px;
 }
 
 .co {
@@ -182,19 +182,19 @@ table tr {
 }
 
 
-  .out {
-    position: fixed;
-    bottom: 655px;
-    right: 1390px;
-    z-index: 1001;
-    padding: 10px 20px;
-    background-color: #164863; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none; 
-    }
+.out {
+  position: fixed;
+  bottom: 735px;
+  right: 1460px;
+  z-index: 1001;
+  padding: 10px 20px;
+  background-color: #164863; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; 
+  }
   
   .out:hover{
     background-color: #088395;
@@ -231,3 +231,43 @@ table tr {
   padding: 10px;
   transform: translateY(-200px) translateX(75px);
   }
+
+  .curso{
+    padding-top: 75px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+    padding-left: 70px;
+  }
+
+  .select{
+    font-size: 18px;
+  }
+
+  .info{
+    padding-top: 30px;
+    text-align: center;
+  }
+
+  .info h2{
+    text-align: center;
+    padding-bottom: 40px;
+    font-size: 40px;
+  }
+
+  h2{
+    text-align: center;
+  }
+
+  .info-H {
+    display: flex;
+    justify-content: center;
+    gap: 100px; 
+}
+
+.info-H p {
+    margin: 0;
+    font-size: 19px;
+    color: #000;
+}
