@@ -26,13 +26,7 @@ export class SolicitudService {
     return this.http.put(`${this.apiUrl}/solicitudes/${solicitud.id}`, solicitud);
   }
 
-  // Obtener una solicitud por ID
-  obtenerSolicitudPorId(id: number): Observable<SolicitudModel> {
-    return this.http.get<SolicitudModel>(`${this.apiUrl}/solicitudes/${id}`);
-  }
-
-  // Eliminar una solicitud
-  eliminarSolicitud(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/solicitudes/${id}`);
+  obtenerSolicitudesPorEstudiante(estudianteId: string): Observable<SolicitudModel[]> {
+    return this.http.get<SolicitudModel[]>(`${this.apiUrl}/solicitudes/por-estudiante/${estudianteId}`);
   }
 }

@@ -25,8 +25,8 @@ export class HorarioService {
     return this.http.get<HorarioModel[]>(`${this.BASE_URL}/horarios-curso/${cursoId}`);
   }
 
-  obtenerHorariosAprobados(estudianteId: string): Observable<HorarioModel[]> {
-    return this.http.get<HorarioModel[]>(`${this.BASE_URL}/horarios-aprobados/${estudianteId}`);
+  obtenerHorariosAprobados(estudianteId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.BASE_URL}/cursos-aprobados/${estudianteId}`);
   }
 
   agregarHorario(horario: HorarioModel)  {

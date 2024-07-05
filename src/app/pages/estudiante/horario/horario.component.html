@@ -5,109 +5,65 @@
 </header>
 
 <section class="datos">
-  <!-- Detalle del estudiante -->
-  <div *ngIf="estudiante">
-    <h2>Detalle del Estudiante</h2>
-    <button class="out" routerLink="/iniciar-estudiante">Salir</button>
-    <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
-    <p><strong>Email:</strong> {{ estudiante.email }}</p>
-    <p><strong>Cedula:</strong> {{ estudiante.dni }}</p>
+  <button (click)="openAgregarPopup()">Ver Horario</button>
+  <div id="horario-pdf">
+    <div *ngIf="estudiante">
+      <h2>Horario del Estudiante</h2>
+      <button class="out" routerLink="/iniciar-estudiante">Salir</button>
+      <div class="profesor-info">
+        <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
+        <p><strong>Email:</strong> {{ estudiante.email }}</p>
+        <p><strong>Cedula:</strong> {{ estudiante.dni }}</p>
+      </div>
+      <div class="button-container">
+      </div>
+    <div class="customBack">
+      <div *ngIf="!loading" class="container">
+        <div class="row">
+          <div class="custom-col">
+            <table class="table">
+              <thead>
+                <tr class="row">
+                  <th class="co">Hora</th>
+                  <th class="co">Lunes</th>
+                  <th class="co">Martes</th>
+                  <th class="co">Miércoles</th>
+                  <th class="co">Jueves</th>
+                  <th class="co">Viernes</th>
+                  <th class="co">Sábado</th>
+                  <th class="co">Domingo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let hora of horas">
+                  <td class="col">{{ hora }}</td>
+                  <td class="col" *ngFor="let dia of dias">
+                    <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)" class="curso-container">
+                      <div class="nombre-y-botones">
+                        <span class="curso-nombre">{{ item.nombre_curso }}</span>
+                      </div>
+                    </div>                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- Botón para ver horarios -->
-  <div class="button-container">
-    <button (click)="openAgregarPopup()">Ver Horario</button>
-  </div>
-
-  <!-- Mostrar horario sin cursos si no hay cursos matriculados -->
-  <div *ngIf="!cursosAprobados.length">
-    <h2>Horario</h2>
-    <table class="table">
-      <thead>
-        <tr class="row">
-          <th class="co">Hora</th>
-          <th class="co">Lunes</th>
-          <th class="co">Martes</th>
-          <th class="co">Miércoles</th>
-          <th class="co">Jueves</th>
-          <th class="co">Viernes</th>
-          <th class="co">Sábado</th>
-          <th class="co">Domingo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let hora of horas">
-          <td class="col">{{ hora }}</td>
-          <td class="col" *ngFor="let dia of dias">
-            <!-- Mostrar solo las materias matriculadas aceptadas -->
-            <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)" class="curso-container">
-              <div class="nombre-y-botones">
-                <span class="curso-nombre">{{ obtenerNombreCurso(item.curso_id) }}</span>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    </div>
+    <div class="outP">
+      <button class="outs" (click)="imprimirHorario()">Descargar PDF</button>
+    </div>
 </section>
 
-<!-- Popup para ver horarios del curso seleccionado -->
 <div class="popup" *ngIf="isPopupOpen">
   <div class="popup-content">
     <span class="close" (click)="closePopup()">&times;</span>
     <section>
-      <div class="curso">
-          <h2>Selecciona un curso:</h2>
-          <select class="select" [(ngModel)]="cursoSeleccionado" (change)="mostrarHorario()">
-            <option *ngFor="let curso of cursos" [ngValue]="curso">{{ curso.nombre }}</option>
-          </select>
-        </div>
-      </section>
-    <section>
-      <h1>Horarios</h1>
-      <div class="info">
-        <div class="info-H" *ngIf="cursoSeleccionado">
-          <p>Materia: {{ cursoSeleccionado.nombre }}</p>
-          <p>Profesor: {{ obtenerNombreProfesor(cursoSeleccionado.id_profe) }}</p>
-        </div>
-      </div>
-      <div class="customBack">
-        <div class="container">
-          <div class="row">
-            <div class="custom-col">
-              <table class="table">
-                <thead>
-                  <tr class="row">
-                    <th class="co">Hora</th>
-                    <th class="co">Lunes</th>
-                    <th class="co">Martes</th>
-                    <th class="co">Miércoles</th>
-                    <th class="co">Jueves</th>
-                    <th class="co">Viernes</th>
-                    <th class="co">Sábado</th>
-                    <th class="co">Domingo</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let hora of horas">
-                    <td class="col">{{ hora }}</td>
-                    <td class="col" *ngFor="let dia of dias">
-                      <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)" class="curso-container">
-                        <div class="nombre-y-botones">
-                          <span class="curso-nombre">{{ obtenerNombreCurso(item.curso_id) }}</span>
-                        </div>
-                      </div>                    
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-ver-horario></app-ver-horario>
     </section>
   </div>
 </div>
-
 

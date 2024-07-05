@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EstudianteModel } from './estudiante.model'; 
 import { CursoModel } from '../curso/curso.model';
+import { HorarioModel } from '../horario/horario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class EstudianteService {
 
   obtenerCursosAprobados(estudianteId: string): Observable<CursoModel[]> {
     return this.http.get<CursoModel[]>(`${this.baseUrl}/cursos-aprobados/${estudianteId}`);
+}
+
+obtenerHorariosCurso(cursoId: string): Observable<HorarioModel[]> {
+  return this.http.get<HorarioModel[]>(`${this.baseUrl}/horarios-curso/${cursoId}`);
 }
 
   agregarEstudiante(estudiante: EstudianteModel): Observable<any> {

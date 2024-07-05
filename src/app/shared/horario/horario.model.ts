@@ -4,6 +4,7 @@ export class HorarioModel{
         public curso_id: string,
         public dia: ('Lunes' | 'Martes' | 'Miércoles' | 'Jueves' | 'Viernes' | 'Sábado' | 'Domingo'),
         public hora_inicio: string,
-        public hora_fin: string
+        public hora_fin: string,
+        public nombre_curso: string
     ) {}
 }
