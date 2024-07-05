@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 export class HorariosComponent implements OnInit {
   horarios: HorarioModel[] = [];
   cursos: CursoModel[] = [];
-  formData: HorarioModel = new HorarioModel("", "", "Lunes", "", "");
+  formData: HorarioModel = new HorarioModel("", "", "Lunes", "", "", "");
   isPopupOpen = false;
   editMode = false;
   loading = false;
@@ -124,7 +124,7 @@ export class HorariosComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.formData = new HorarioModel("", "", "Lunes", "", "");
+    this.formData = new HorarioModel("", "", "Lunes", "", "", "");
     this.selectedHora = this.horas[0];
     this.editMode = false;
     this.isPopupOpen = false;

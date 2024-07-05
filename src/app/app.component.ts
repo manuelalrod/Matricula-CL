@@ -16,6 +16,8 @@ import { CursoService } from './shared/curso/curso.service';
 import { HorarioService } from './shared/horario/horario.service';
 import { EstudianteService } from './shared/estudiantes/estudiantes.service';
 import { IniciarAComponent } from './pages/administrador/iniciar-a/iniciar-a.component';
+import { SolicitudService } from './shared/solicitud/solicitud.service';
+import { VerHorarioComponent } from './pages/estudiante/ver-horario/ver-horario/ver-horario.component';
 
 @Component({
   selector: 'app-root',
@@ -33,12 +35,13 @@ import { IniciarAComponent } from './pages/administrador/iniciar-a/iniciar-a.com
     InicioComponent,
     IniciarPComponent,
     HorarioPComponent,
-    IniciarAComponent
+    IniciarAComponent,
+    VerHorarioComponent
 
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [ProfesorService, CursoService, HorarioService,EstudianteService]
+  providers: [ProfesorService, CursoService, HorarioService,EstudianteService, SolicitudService]
 })
 export class AppComponent {
   title = 'matricula';
