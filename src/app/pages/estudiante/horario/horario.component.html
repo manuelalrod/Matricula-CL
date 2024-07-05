@@ -1,15 +1,24 @@
-<div *ngIf="estudiante">
-    <h2>Detalle del Estudiante</h2>
-    <button class="out" routerLink="/iniciar-estudiante">Salir</button>
+<div *ngIf="estudiante" class="estudiante-detalle">
+  <h2>Detalle del Estudiante</h2>
+  <button class="out" routerLink="/iniciar-estudiante">Salir</button>
+  <div class="estudiante-info">
     <p><strong>Nombre:</strong> {{ estudiante.nombre }}</p>
     <p><strong>Apellido:</strong> {{ estudiante.apellido }}</p>
     <p><strong>Email:</strong> {{ estudiante.email }}</p>
-    <p><strong>Cedula:</strong> {{ estudiante.dni }}</p>
+    <p><strong>Cédula:</strong> {{ estudiante.dni }}</p>
     <p><strong>Edad:</strong> {{ estudiante.edad }}</p>
     <p><strong>Prueba:</strong> {{ estudiante.prueba }}</p>
   </div>
   
-  
+  <h3>Solicitar Matrícula</h3>
+  <div class="matricula-solicitar">
+    <select (change)="seleccionarCurso($event)" class="curso-select">
+      <option *ngFor="let curso of cursos" [ngValue]="curso">{{ curso.nombre }}</option>
+    </select>
+    <button (click)="solicitarMatricula()" class="matricula-button">Solicitar Matrícula</button>
+  </div>
+</div>
+
   
   
   
