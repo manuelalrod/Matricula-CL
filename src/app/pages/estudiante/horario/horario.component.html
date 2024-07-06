@@ -5,13 +5,12 @@
 </header>
 
 <section class="datos">
-  <button (click)="openAgregarPopup()">Ver Horario</button>
-  <h3>Solicitar Matrícula</h3>
+  <button class="on" (click)="openAgregarPopup()">Ver Horario</button>
   <div class="matricula-solicitar">
+    <button (click)="solicitarMatricula()" class="matricula-button">Solicitar Matrícula:</button>
     <select [(ngModel)]="cursoSeleccionado" class="curso-select">
       <option *ngFor="let curso of cursos" [ngValue]="curso">{{ curso.nombre }}</option>
     </select>
-    <button (click)="solicitarMatricula()" class="matricula-button">Solicitar Matrícula</button>
   </div>
   <div id="horario-pdf">
     <div *ngIf="estudiante">
