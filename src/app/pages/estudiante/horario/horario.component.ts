@@ -11,6 +11,8 @@ import { SolicitudService } from '../../../shared/solicitud/solicitud.service';
 import { SolicitudModel } from '../../../shared/solicitud/solicitud.model';
 import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { CursoService } from '../../../shared/curso/curso.service';
+import { CursoModel } from '../../../shared/curso/curso.model';
 
 @Component({
   selector: 'app-horario',
@@ -21,6 +23,8 @@ import html2canvas from 'html2canvas';
 })
 export class HorarioComponent implements OnInit {
   estudiante: EstudianteModel | null = null;
+  cursos: CursoModel[] = [];
+  cursoSeleccionado: CursoModel | null = null;
   horarios: HorarioModel[] = [];
   solicitudes: SolicitudModel[] = [];
   dias: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
@@ -38,6 +42,7 @@ export class HorarioComponent implements OnInit {
     private horarioService: HorarioService,
     private route: ActivatedRoute,
     private estudianteService: EstudianteService,
+    private cursoService: CursoService,
     private solicitudService: SolicitudService
   ) {}
 
@@ -55,6 +60,59 @@ export class HorarioComponent implements OnInit {
         }
       );
     }
+
+    this.cargarCursos();
+  }
+
+  cargarCursos(): void {
+    this.cursoService.obtenerCursos().subscribe(
+      data => {
+        this.cursos = data;
+      },
+      error => {
+        console.error('Error al cargar los cursos:', error);
+      }
+    );
+  }
+
+  seleccionarCurso(event: any): void {
+    this.cursoSeleccionado = event.target.value;
+  }
+
+  solicitarMatricula(): void {
+    if (!this.estudiante) {
+      console.error('No se ha seleccionado un estudiante.');
+      alert('Por favor, selecciona un estudiante.');
+      return;
+    }
+
+    if (!this.cursoSeleccionado) {
+      console.error('No se ha seleccionado un curso.');
+      alert('Por favor, selecciona un curso.');
+      return;
+    }
+
+    const nuevaSolicitud: SolicitudModel = {
+      id: '',
+      estudiante_id: this.estudiante.id.toString(), // Convertir a string
+      curso_id: this.cursoSeleccionado.id.toString(), // Convertir a string
+      estado: 'Pendiente'
+    };
+
+    console.log('Enviando solicitud de matrícula:', nuevaSolicitud); // Log para verificar datos
+
+    this.solicitudService.crearSolicitud(nuevaSolicitud).subscribe(
+      response => {
+        console.log('Solicitud de matrícula enviada:', response);
+        alert('Solicitud de matrícula enviada exitosamente.');
+        // Opcional: Recargar las solicitudes después de crear una nueva
+        this.cargarSolicitudesPorEstudiante(this.estudiante!.id.toString());
+      },
+      error => {
+        console.error('Error al enviar la solicitud de matrícula:', error);
+        alert('Hubo un error al enviar la solicitud de matrícula.');
+      }
+    );
   }
 
   cargarSolicitudesPorEstudiante(estudianteId: string): void {
@@ -82,31 +140,29 @@ export class HorarioComponent implements OnInit {
         this.loading = false;
       }
     );
-  }
+  }  
 
   obtenerHorarioPorDiaYHora(dia: string, hora: string): HorarioModel[] {
     const hora24 = this.convertirAHora24(hora.split('-')[0].trim());
-    const horariosPorDiaYHora = this.horarios.filter(h => 
+    return this.horarios.filter(h => 
       h.dia === dia && 
       this.convertirAHora24(h.hora_inicio) <= hora24 && 
       this.convertirAHora24(h.hora_fin) > hora24
     );
-    console.log(`Horarios para ${dia} a las ${hora}:`, horariosPorDiaYHora);
-    return horariosPorDiaYHora;
-  }
+  }  
 
   convertirAHora24(hora12: string): string {
     const [time, period] = hora12.split(' ');
     let [hours, minutes] = time.split(':').map(Number);
-
+  
     if (period === 'PM' && hours < 12) {
       hours += 12;
     } else if (period === 'AM' && hours === 12) {
       hours = 0;
     }
-
-    return `${String(hours).padStart(2, '0')}:${minutes}`;
-  }
+  
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+  }  
 
   openAgregarPopup(): void {
     this.isPopupOpen = true;
