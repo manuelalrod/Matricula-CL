@@ -6,13 +6,17 @@
 
 <section class="datos">
   <button (click)="openAgregarPopup()">Ver Horario</button>
-  <h3>Solicitar Matrícula</h3>
-  <div class="matricula-solicitar">
-    <select [(ngModel)]="cursoSeleccionado" class="curso-select">
-      <option *ngFor="let curso of cursos" [ngValue]="curso">{{ curso.nombre }}</option>
-    </select>
-    <button (click)="solicitarMatricula()" class="matricula-button">Solicitar Matrícula</button>
+
+  <div *ngIf="seccionVisible">
+    <h3>Solicitar Matrícula</h3>
+    <div class="matricula-solicitar">
+      <select [(ngModel)]="cursoSeleccionado" class="curso-select">
+        <option *ngFor="let curso of cursos" [ngValue]="curso">{{ curso.nombre }}</option>
+      </select>
+      <button (click)="solicitarMatricula()" class="matricula-button">Solicitar Matrícula</button>
+    </div>
   </div>
+
   <div id="horario-pdf">
     <div *ngIf="estudiante">
       <h2>Horario del Estudiante</h2>
@@ -59,6 +63,7 @@
       </div>
     </div>
   </div>
+
   <div class="outP">
     <button class="outs" (click)="imprimirHorario()">Descargar PDF</button>
   </div>

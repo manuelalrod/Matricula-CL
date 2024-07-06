@@ -35,8 +35,11 @@ export class HorarioComponent implements OnInit {
     '04:00 PM-05:00 PM', '05:00 PM-06:00 PM', '06:00 PM-07:00 PM'
   ];
 
+  isPopupOpen = false
   loading = false;
-  isPopupOpen = false;
+  seccionVisible = true; // Controla la visibilidad de la sección de solicitud de matrícula
+  solicitudEnviada = false; // Indica si ya se ha enviado una solicitud
+  solicitudEstado: string | null = null; // Estado actual de la solicitud ('Pendiente', 'Aprobado', 'Rechazado')
 
   constructor(
     private horarioService: HorarioService,
@@ -46,6 +49,7 @@ export class HorarioComponent implements OnInit {
     private solicitudService: SolicitudService
   ) {}
 
+  
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -105,7 +109,7 @@ export class HorarioComponent implements OnInit {
       response => {
         console.log('Solicitud de matrícula enviada:', response);
         alert('Solicitud de matrícula enviada exitosamente.');
-        // Opcional: Recargar las solicitudes después de crear una nueva
+        this.actualizarEstadoSolicitud();
         this.cargarSolicitudesPorEstudiante(this.estudiante!.id.toString());
       },
       error => {
@@ -119,7 +123,7 @@ export class HorarioComponent implements OnInit {
     this.solicitudService.obtenerSolicitudesPorEstudiante(estudianteId).subscribe(
       data => {
         this.solicitudes = data;
-        console.log('Solicitudes cargadas:', this.solicitudes);
+        this.actualizarEstadoSolicitud();
       },
       error => {
         console.error('Error al cargar las solicitudes:', error);
@@ -140,36 +144,42 @@ export class HorarioComponent implements OnInit {
         this.loading = false;
       }
     );
-  }  
+  }
+
+  actualizarEstadoSolicitud(): void {
+    // Buscar la solicitud actual del estudiante
+    const solicitudActual = this.solicitudes.find(solicitud => solicitud.estudiante_id === this.estudiante?.id.toString());
+
+    if (solicitudActual) {
+      this.solicitudEstado = solicitudActual.estado;
+      this.seccionVisible = solicitudActual.estado !== 'Aprobado';
+    } else {
+      this.solicitudEstado = null;
+      this.seccionVisible = true;
+    }
+  }
+  
 
   obtenerHorarioPorDiaYHora(dia: string, hora: string): HorarioModel[] {
     const hora24 = this.convertirAHora24(hora.split('-')[0].trim());
-    return this.horarios.filter(h => 
-      h.dia === dia && 
-      this.convertirAHora24(h.hora_inicio) <= hora24 && 
+    return this.horarios.filter(h =>
+      h.dia === dia &&
+      this.convertirAHora24(h.hora_inicio) <= hora24 &&
       this.convertirAHora24(h.hora_fin) > hora24
     );
-  }  
+  }
 
   convertirAHora24(hora12: string): string {
     const [time, period] = hora12.split(' ');
     let [hours, minutes] = time.split(':').map(Number);
-  
+
     if (period === 'PM' && hours < 12) {
       hours += 12;
     } else if (period === 'AM' && hours === 12) {
       hours = 0;
     }
-  
+
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-  }  
-
-  openAgregarPopup(): void {
-    this.isPopupOpen = true;
-  }
-
-  closePopup(): void {
-    this.isPopupOpen = false;
   }
 
   imprimirHorario(): void {
@@ -187,4 +197,12 @@ export class HorarioComponent implements OnInit {
       });
     }
   }
+  openAgregarPopup(): void {
+    this.isPopupOpen = true;
+  }
+
+  closePopup(): void {
+    this.isPopupOpen = false;
+  }
+
 }
