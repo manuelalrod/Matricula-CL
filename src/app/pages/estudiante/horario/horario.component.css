@@ -106,7 +106,7 @@ section {
   }
 
 .datos{
-    padding-top: 90px;
+    padding-top: 100px;
 }
 
 .popup {
@@ -353,6 +353,8 @@ h2{
   padding-bottom: 30px;
 }
 
+
+
 .on{
   background-color: #164863;
   color: #fff;
@@ -366,9 +368,9 @@ h2{
 }
 
 .matricula-solicitar{
-  padding-top: 30px;
   font-size: 20px;
   padding-bottom: 30px;
+  text-align: end;
 }
 
 .curso-select{

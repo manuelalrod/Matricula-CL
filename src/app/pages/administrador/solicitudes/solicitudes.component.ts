@@ -76,12 +76,23 @@ export class SolicitudesComponent {
     return estudiante ? `${estudiante.nombre} ${estudiante.apellido}` : 'Estudiante desconocido';
   }
 
+  obtenerEdadEstudiante(estudianteId: number): string | null {
+    const estudiante = this.estudiantes.find(e => e.id === estudianteId);
+    return estudiante ? estudiante.edad.toString() : null;
+  }
+  
+
+  obtenerPruebaEstudiante(estudianteId: number): string {
+    const estudiante = this.estudiantes.find(e => e.id === estudianteId);
+    return estudiante ? estudiante.prueba : 'Desconocido';
+  }
+
   aprobarSolicitud(solicitud: SolicitudModel): void {
     solicitud.estado = 'Aprobado';
     this.solicitudService.actualizarSolicitud(solicitud).subscribe(
       response => {
         console.log('Solicitud aprobada:', response);
-        this.cargarSolicitudes(); // Recargar las solicitudes para actualizar la vista
+        this.cargarSolicitudes(); 
       },
       error => {
         console.error('Error al aprobar la solicitud:', error);
@@ -94,7 +105,7 @@ export class SolicitudesComponent {
     this.solicitudService.actualizarSolicitud(solicitud).subscribe(
       response => {
         console.log('Solicitud rechazada:', response);
-        this.cargarSolicitudes(); // Recargar las solicitudes para actualizar la vista
+        this.cargarSolicitudes(); 
       },
       error => {
         console.error('Error al rechazar la solicitud:', error);
