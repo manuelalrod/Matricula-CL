@@ -262,7 +262,7 @@ color: white;
 border: none;
 border-radius: 5px;
 padding: 10px;
-transform: translateY(-200px) translateX(75px);
+transform: translateY(-350px) translateX(90px);
 }
 
 .curso{
@@ -353,3 +353,34 @@ h2{
   padding-bottom: 30px;
 }
 
+.on{
+  background-color: #164863;
+  color: #fff;
+  padding: 3px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.on:hover{
+  background-color: #088395;
+}
+
+.matricula-solicitar{
+  padding-top: 30px;
+  font-size: 20px;
+  padding-bottom: 30px;
+}
+
+.curso-select{
+  color: #164863;
+  font-size: 18px;
+}
+
+.matricula-button{
+  color: #088395;
+  padding: 3px;
+  border-radius: 5px;
+  font-size: 25px;
+  background-color: transparent;
+  cursor: pointer;
+}

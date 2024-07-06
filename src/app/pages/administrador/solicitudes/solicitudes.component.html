@@ -30,8 +30,22 @@
           <td class="col">{{ obtenerNombreEstudiante(+solicitud.estudiante_id) }}</td>
           <td class="col">{{ solicitud.estado }}</td>
           <td class="col">
-            <button (click)="aprobarSolicitud(solicitud)" [disabled]="solicitud.estado !== 'Pendiente'">Aprobar</button>
-            <button (click)="rechazarSolicitud(solicitud)" [disabled]="solicitud.estado !== 'Pendiente'">Rechazar</button>
+            <button
+          class="a"
+          [ngClass]="{ 'selected': solicitud.estado === 'Aprobado' }"
+          (click)="aprobarSolicitud(solicitud)"
+          [disabled]="solicitud.estado !== 'Pendiente'"
+        >
+          Aprobar
+        </button>
+        <button
+          class="a"
+          [ngClass]="{ 'selected': solicitud.estado === 'Rechazado' }"
+          (click)="rechazarSolicitud(solicitud)"
+          [disabled]="solicitud.estado !== 'Pendiente'"
+        >
+          Rechazar
+        </button>
           </td>
         </tr>
       </tbody>

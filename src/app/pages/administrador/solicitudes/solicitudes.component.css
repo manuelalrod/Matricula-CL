@@ -106,7 +106,16 @@ section {
 }
 
 .container {
-  margin-top: 1px;
+  margin-top: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container h2{
+  text-align: center;
+  padding-bottom: 15px;  
 }
 
 table {
@@ -143,3 +152,17 @@ table {
   min-width: 125px; 
   min-height: 160px; 
 }
+
+.a {
+  color: #164863;
+  margin-right: 8px; 
+  text-align: center;
+  background-color: transparent;
+}
+
+.a.selected {
+  color: #2c90c6; /* Cambia a tu color deseado */
+  cursor: pointer;
+}
+
+
