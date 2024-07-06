@@ -1,25 +1,74 @@
-<div *ngIf="estudiante" class="estudiante-detalle">
-  <h2>Detalle del Estudiante</h2>
-  <button class="out" routerLink="/iniciar-estudiante">Salir</button>
-  <div class="estudiante-info">
-    <p><strong>Nombre:</strong> {{ estudiante.nombre }}</p>
-    <p><strong>Apellido:</strong> {{ estudiante.apellido }}</p>
-    <p><strong>Email:</strong> {{ estudiante.email }}</p>
-    <p><strong>Cédula:</strong> {{ estudiante.dni }}</p>
-    <p><strong>Edad:</strong> {{ estudiante.edad }}</p>
-    <p><strong>Prueba:</strong> {{ estudiante.prueba }}</p>
-  </div>
-  
+<header class="header">
+  <section class="flex">
+    <a href="#Home" class="logo">Centro de Lenguas</a>
+  </section>
+</header>
+
+<section class="datos">
+  <button (click)="openAgregarPopup()">Ver Horario</button>
   <h3>Solicitar Matrícula</h3>
   <div class="matricula-solicitar">
-    <select (change)="seleccionarCurso($event)" class="curso-select">
+    <select [(ngModel)]="cursoSeleccionado" class="curso-select">
       <option *ngFor="let curso of cursos" [ngValue]="curso">{{ curso.nombre }}</option>
     </select>
     <button (click)="solicitarMatricula()" class="matricula-button">Solicitar Matrícula</button>
   </div>
-</div>
+  <div id="horario-pdf">
+    <div *ngIf="estudiante">
+      <h2>Horario del Estudiante</h2>
+      <button class="out" routerLink="/iniciar-estudiante">Salir</button>
+      <div class="profesor-info">
+        <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
+        <p><strong>Email:</strong> {{ estudiante.email }}</p>
+        <p><strong>Cedula:</strong> {{ estudiante.dni }}</p>
+      </div>
+      <div class="button-container"></div>
+      <div class="customBack">
+        <div *ngIf="!loading" class="container">
+          <div class="row">
+            <div class="custom-col">
+              <table class="table">
+                <thead>
+                  <tr class="row">
+                    <th class="co">Hora</th>
+                    <th class="co">Lunes</th>
+                    <th class="co">Martes</th>
+                    <th class="co">Miércoles</th>
+                    <th class="co">Jueves</th>
+                    <th class="co">Viernes</th>
+                    <th class="co">Sábado</th>
+                    <th class="co">Domingo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let hora of horas">
+                    <td class="col">{{ hora }}</td>
+                    <td class="col" *ngFor="let dia of dias">
+                      <div *ngFor="let item of obtenerHorarioPorDiaYHora(dia, hora)" class="curso-container">
+                        <div class="nombre-y-botones">
+                          <span class="curso-nombre">{{ item.nombre_curso }}</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="outP">
+    <button class="outs" (click)="imprimirHorario()">Descargar PDF</button>
+  </div>
+</section>
 
-  
-  
-  
-  
+<div class="popup" *ngIf="isPopupOpen">
+  <div class="popup-content">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <section>
+      <app-ver-horario></app-ver-horario>
+    </section>
+  </div>
+</div>

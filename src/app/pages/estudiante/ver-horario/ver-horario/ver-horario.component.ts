@@ -1,29 +1,31 @@
-import { Component } from '@angular/core';
-import { HorarioModel } from '../../../../shared/horario/horario.model';
-import { HorarioService } from '../../../../shared/horario/horario.service';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { EstudianteModel } from '../../../../shared/estudiantes/estudiante.model';
 import { CursoModel } from '../../../../shared/curso/curso.model';
+import { HorarioModel } from '../../../../shared/horario/horario.model';
+import { ProfesorModel } from '../../../../shared/profesor/profesor.model';
+import { SolicitudModel } from '../../../../shared/solicitud/solicitud.model';
+import { ActivatedRoute } from '@angular/router';
+import { EstudianteService } from '../../../../shared/estudiantes/estudiantes.service';
+import { HorarioService } from '../../../../shared/horario/horario.service';
 import { CursoService } from '../../../../shared/curso/curso.service';
 import { ProfesorService } from '../../../../shared/profesor/profesor.service';
-import { ProfesorModel } from '../../../../shared/profesor/profesor.model';
+import { SolicitudService } from '../../../../shared/solicitud/solicitud.service';
 
 @Component({
-  selector: 'app-horarios-e',
+  selector: 'app-ver-horario',
   standalone: true,
-  imports: [CommonModule,FormsModule,RouterLink],
-  templateUrl: './horarios-e.component.html',
-  styleUrl: './horarios-e.component.css'
+  imports: [FormsModule, CommonModule],
+  templateUrl: './ver-horario.component.html',
+  styleUrl: './ver-horario.component.css'
 })
-export class HorariosEComponent {
-
+export class VerHorarioComponent implements OnInit{
   cursoSeleccionado: CursoModel | null = null;
   horariosCursoSeleccionado: HorarioModel[] = [];
   horarios: HorarioModel[] = [];
   cursos: CursoModel[] = [];
   profesores: ProfesorModel[] = [];
-  loading: boolean = false;
   dias: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
   horas: string[] = [
     '07:00 AM-08:00 AM', '08:00 AM-09:00 AM', '09:00 AM-10:00 AM',
@@ -39,23 +41,9 @@ export class HorariosEComponent {
   ) {}
 
   ngOnInit(): void {
-    this.cargarHorarios();
     this.cargarCursos();
     this.cargarProfesores();
-  }
-
-  cargarHorarios(): void {
-    this.loading = true;
-    this.horarioService.obtenerHorario().subscribe(
-      data => {
-        this.horarios = data;
-        this.loading = false;
-      },
-      error => {
-        console.error('Error al cargar los horarios:', error);
-        this.loading = false;
-      }
-    );
+    this.cargarHorarios();
   }
 
   cargarCursos(): void {
@@ -80,10 +68,20 @@ export class HorariosEComponent {
     );
   }
 
-  seleccionarCurso(curso: CursoModel) {
-    this.cursoSeleccionado = curso;
+  cargarHorarios(): void {
+    this.horarioService.obtenerHorario().subscribe(
+      data => {
+        this.horarios = data;
+      },
+      error => {
+        console.error('Error al cargar los horarios:', error);
+      }
+    );
+  }
+
+  mostrarHorario() {
     if (this.cursoSeleccionado) {
-      this.horariosCursoSeleccionado = this.horarios.filter(horario => horario.curso_id === curso.id);
+      this.horariosCursoSeleccionado = this.horarios.filter(horario => horario.curso_id === this.cursoSeleccionado!.id);
     }
   }
 
@@ -113,12 +111,6 @@ export class HorariosEComponent {
     }
 
     return `${hours.padStart(2, '0')}:${minutes}`;
-  }
-
-  mostrarHorario() {
-    if (this.cursoSeleccionado) {
-      this.horariosCursoSeleccionado = this.horarios.filter(horario => horario.curso_id === this.cursoSeleccionado!.id);
-    }
   }
 
   obtenerNombreProfesor(id_profe: string): string {
