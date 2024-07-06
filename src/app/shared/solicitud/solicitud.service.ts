@@ -8,25 +8,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SolicitudService {
 
-  private BASE_URL = 'http://localhost:3000'; // Cambia la URL según sea necesario
+  private apiUrl = 'http://localhost:3000';  // URL de tu backend, ajusta según sea necesario
 
   constructor(private http: HttpClient) {}
   
   obtenerSolicitudes(): Observable<SolicitudModel[]> {
-    return this.http.get<SolicitudModel[]>(`${this.BASE_URL}/solicitudes`);
+    return this.http.get<SolicitudModel[]>(`${this.apiUrl}/solicitudes`);
   }
 
   // Crear una nueva solicitud
   crearSolicitud(solicitud: SolicitudModel): Observable<SolicitudModel> {
-    return this.http.post<SolicitudModel>(`${this.BASE_URL}/solicitud/agregar`, solicitud);
+    return this.http.post<SolicitudModel>(`${this.apiUrl}/solicitud/agregar`, solicitud);
   }
 
   // Actualizar el estado de una solicitud
   actualizarSolicitud(solicitud: SolicitudModel): Observable<any> {
-    return this.http.put(`${this.BASE_URL}/solicitudes/${solicitud.id}`, solicitud);
+    return this.http.put(`${this.apiUrl}/solicitudes/${solicitud.id}`, solicitud);
+  }
+
+  // Actualizar la solicitud de la matricula
+  actualizarSolicitudMatricula(id: string ,solicitud: SolicitudModel): Observable<any> {
+    return this.http.put(`${this.apiUrl}/solicitudes/actualizar/${id}`, solicitud);
   }
 
   obtenerSolicitudesPorEstudiante(estudianteId: string): Observable<SolicitudModel[]> {
-    return this.http.get<SolicitudModel[]>(`${this.BASE_URL}/solicitudes/por-estudiante/${estudianteId}`);
+    return this.http.get<SolicitudModel[]>(`${this.apiUrl}/solicitudes/por-estudiante/${estudianteId}`);
   }
 }

@@ -20,6 +20,8 @@
         <tr>
           <th class="co">Curso</th>
           <th class="co">Estudiante</th>
+          <th class="co">Edad</th>
+          <th class="co">Prueba</th>
           <th class="co">Estado</th>
           <th class="co">Acciones</th>
         </tr>
@@ -28,10 +30,22 @@
         <tr *ngFor="let solicitud of solicitudes">
           <td class="col">{{ obtenerNombreCurso(solicitud.curso_id) }}</td>
           <td class="col">{{ obtenerNombreEstudiante(+solicitud.estudiante_id) }}</td>
+          <td class="col">{{ obtenerEdadEstudiante(+solicitud.estudiante_id) }}</td>
+          <td class="col">{{ obtenerPruebaEstudiante(+solicitud.estudiante_id) }}</td>
           <td class="col">{{ solicitud.estado }}</td>
           <td class="col">
-            <button (click)="aprobarSolicitud(solicitud)" [disabled]="solicitud.estado !== 'Pendiente'">Aprobar</button>
-            <button (click)="rechazarSolicitud(solicitud)" [disabled]="solicitud.estado !== 'Pendiente'">Rechazar</button>
+            <button 
+            class="a"
+            [ngClass]="{ 'selected': solicitud.estado === 'Aprobado' }"
+            (click)="aprobarSolicitud(solicitud)">
+            Aprobar
+          </button>
+            <button 
+             class="a"
+            [ngClass]="{ 'selected': solicitud.estado === 'Rechazado' }"
+            (click)="rechazarSolicitud(solicitud)">
+            Rechazar
+          </button>
           </td>
         </tr>
       </tbody>

@@ -106,7 +106,16 @@ section {
 }
 
 .container {
-  margin-top: 1px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container h2{
+  text-align: center;
+  padding-bottom: 15px;  
 }
 
 table {
@@ -135,11 +144,24 @@ table {
 
 .col {
   text-align: center;
-  font-size: 14px; 
-  padding-right: 8px;
-  padding-left: 8px;
+  font-size: 16px; 
+  padding-right: 50px;
+  padding-left: 50px;
   border: 1px solid #F1EEDC; 
   background: #fff;
-  min-width: 125px; 
+  min-width: px; 
   min-height: 160px; 
 }
+
+.a {
+  color: #164863;
+  margin-right: 8px; 
+  text-align: center;
+  background-color: transparent;
+}
+
+.a.selected {
+  color: #2c90c6; /* Cambia a tu color deseado */
+  cursor: pointer;
+}
+

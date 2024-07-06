@@ -297,3 +297,7 @@ color: #164863;
 box-shadow: 0px 2px 2px #76885B;
 cursor: pointer;
 }
+
+h1{
+  text-align: center;
+}

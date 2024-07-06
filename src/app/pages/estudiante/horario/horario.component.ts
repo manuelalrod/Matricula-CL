@@ -37,6 +37,7 @@ export class HorarioComponent implements OnInit {
 
   loading = false;
   isPopupOpen = false;
+  estadoSolicitud: string = 'NoSolicitud'; 
 
   constructor(
     private horarioService: HorarioService,
@@ -80,32 +81,23 @@ export class HorarioComponent implements OnInit {
   }
 
   solicitarMatricula(): void {
-    if (!this.estudiante) {
-      console.error('No se ha seleccionado un estudiante.');
-      alert('Por favor, selecciona un estudiante.');
-      return;
-    }
-
-    if (!this.cursoSeleccionado) {
-      console.error('No se ha seleccionado un curso.');
+    if (!this.estudiante || !this.cursoSeleccionado) {
+      console.error('Datos incompletos para enviar la solicitud.');
       alert('Por favor, selecciona un curso.');
       return;
     }
-
+  
     const nuevaSolicitud: SolicitudModel = {
       id: '',
-      estudiante_id: this.estudiante.id.toString(), // Convertir a string
-      curso_id: this.cursoSeleccionado.id.toString(), // Convertir a string
+      estudiante_id: this.estudiante.id.toString(),
+      curso_id: this.cursoSeleccionado.id.toString(),
       estado: 'Pendiente'
     };
-
-    console.log('Enviando solicitud de matrícula:', nuevaSolicitud); // Log para verificar datos
-
+  
     this.solicitudService.crearSolicitud(nuevaSolicitud).subscribe(
       response => {
         console.log('Solicitud de matrícula enviada:', response);
         alert('Solicitud de matrícula enviada exitosamente.');
-        // Opcional: Recargar las solicitudes después de crear una nueva
         this.cargarSolicitudesPorEstudiante(this.estudiante!.id.toString());
       },
       error => {
@@ -113,13 +105,17 @@ export class HorarioComponent implements OnInit {
         alert('Hubo un error al enviar la solicitud de matrícula.');
       }
     );
-  }
+  }  
 
   cargarSolicitudesPorEstudiante(estudianteId: string): void {
     this.solicitudService.obtenerSolicitudesPorEstudiante(estudianteId).subscribe(
       data => {
         this.solicitudes = data;
-        console.log('Solicitudes cargadas:', this.solicitudes);
+        if (this.solicitudes.length > 0) {
+          this.estadoSolicitud = this.solicitudes[0].estado;
+        } else {
+          this.estadoSolicitud = 'NoSolicitud'; 
+        }
       },
       error => {
         console.error('Error al cargar las solicitudes:', error);
