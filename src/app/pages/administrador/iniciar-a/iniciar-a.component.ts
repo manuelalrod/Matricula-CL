@@ -20,7 +20,7 @@ export class IniciarAComponent {
   onSubmit() {
     if (this.username === 'Admin' && this.password === '12345') {
       
-      this.router.navigate(['/curso']);
+      this.router.navigate(['/profesores']);
     } else {
       this.errorMessage = 'Invalid username or password.';
     }

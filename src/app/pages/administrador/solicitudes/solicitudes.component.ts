@@ -4,6 +4,10 @@ import { SolicitudModel } from '../../../shared/solicitud/solicitud.model';
 import { SolicitudService } from '../../../shared/solicitud/solicitud.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { EstudianteService } from '../../../shared/estudiantes/estudiantes.service';
+import { CursoService } from '../../../shared/curso/curso.service';
+import { EstudianteModel } from '../../../shared/estudiantes/estudiante.model';
+import { CursoModel } from '../../../shared/curso/curso.model';
 
 @Component({
   selector: 'app-solicitudes',
@@ -14,11 +18,19 @@ import { CommonModule } from '@angular/common';
 })
 export class SolicitudesComponent {
   solicitudes: SolicitudModel[] = [];
+  estudiantes: EstudianteModel[] = [];
+  cursos: CursoModel[] = [];
 
-  constructor(private solicitudService: SolicitudService) {}
+  constructor( 
+    private solicitudService: SolicitudService,
+    private estudianteService: EstudianteService,
+    private cursoService: CursoService
+  ) {}
 
   ngOnInit(): void {
     this.cargarSolicitudes();
+    this.cargarCursos();
+    this.cargarEstudiantes();
   }
 
   cargarSolicitudes(): void {
@@ -30,6 +42,38 @@ export class SolicitudesComponent {
         console.error('Error al cargar las solicitudes:', error);
       }
     );
+  }
+
+  cargarEstudiantes(): void {
+    this.estudianteService.obtenerEstudiantes().subscribe(
+      data => {
+        this.estudiantes = data;
+      },
+      error => {
+        console.error('Error al cargar los estudiantes:', error);
+      }
+    );
+  }
+
+  cargarCursos(): void {
+    this.cursoService.obtenerCursos().subscribe(
+      data => {
+        this.cursos = data;
+      },
+      error => {
+        console.error('Error al cargar los cursos:', error);
+      }
+    );
+  }
+
+  obtenerNombreCurso(cursoId: string): string {
+    const curso = this.cursos.find(c => c.id === cursoId);
+    return curso ? curso.nombre : 'Curso desconocido';
+  }
+
+  obtenerNombreEstudiante(estudianteId: number): string {
+    const estudiante = this.estudiantes.find(e => e.id === estudianteId);
+    return estudiante ? `${estudiante.nombre} ${estudiante.apellido}` : 'Estudiante desconocido';
   }
 
   aprobarSolicitud(solicitud: SolicitudModel): void {
